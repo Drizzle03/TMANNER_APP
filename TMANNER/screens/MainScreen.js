@@ -29,7 +29,7 @@ function MainScreen(props) {
                     <View style={styles.priceContainer}>
                         <Text style={styles.cumulativeSalesText}>123,599,000원</Text>
                         <View style={styles.period}>
-                            <Text style={{color:"#fff"}}>2021년 7월부터 운영 중</Text>
+                            <Text style={{color:"#fff"}}>2021년 7월부터 운영중</Text>
                         </View>
                     </View>
                 </View>
