@@ -37,25 +37,25 @@ function MainScreen(props) {
                 <View style={styles.MenuMangeContainer}>
                     <Text style={styles.MenubtnTitle}>내 가게 메뉴판 관리</Text>
                     <View style={styles.MenuBtnContainer}>
-                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Details')}>
+                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SoldOut')}>
                             <Text style={styles.btnTitle}>메뉴 품절등록</Text>
                             <Text style={styles.btnIcon}>🚨</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Details')}>
+                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MenuEdit')}>
                             <Text style={styles.btnTitle}>메뉴 관리</Text>
                             <Text style={styles.btnSubTitle}>메뉴 수정/삭제</Text>
                             <Text style={styles.btnIcon}>🔧</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Details')}>
+                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Test')}>
                             <Text style={styles.btnTitle}>카테고리 관리</Text>
                             <Text style={styles.btnSubTitle}>카테고리 추가/등록/삭제</Text>
                             <Text style={styles.btnIcon}>📋</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Details')}>
+                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Test')}>
                             <Text style={styles.btnTitle}>메뉴 등록</Text>
                             <Text style={styles.btnIcon}>🧑🏼‍🍳</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Details')}>
+                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Test')}>
                             <Text style={styles.btnTitle}>제공 서비스 등록</Text>
                             <Text style={styles.btnSubTitle}>주문함과 동시에 고객들에게 서비스 제공이 가능해요</Text>
                             <Text style={styles.btnIcon}>🙌🏾</Text>
