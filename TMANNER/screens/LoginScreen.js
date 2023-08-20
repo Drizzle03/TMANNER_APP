@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
 
     inputcontainer: {
         flex: 1,
-        marginTop: 150,
+        marginTop: 120,
     },
 
     title: {
         fontSize: 30,
-        marginBottom: 10,
+        marginBottom: 30,
         fontWeight: "bold",
         color: '#000',
     },
