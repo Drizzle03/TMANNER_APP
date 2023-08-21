@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { LogBox } from 'react-native';
+
 
 // Import the screens
 import HomeScreen from './screens/HomeScreen';
@@ -12,6 +14,8 @@ import MenuEditScreen from './screens/MenuEditScreen';
 import TestScreen from './screens/TestScreen';
 
 const Stack = createNativeStackNavigator();
+LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate` with no listeners registered.']);
+
 
 function App() {
   return (
