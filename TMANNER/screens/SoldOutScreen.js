@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
@@ -22,13 +22,19 @@ function DynamicScreen({ route }) {
     );
 }
 
-function SoldOutTabs() {
+function SoldOutTabs({ navigation }) {
     return (
         <SafeAreaView style={styles.safeAreaContainer}>
+            {/* 상단 헤더  */}
             <View style={styles.container}>
-                <Image source={require('../assets/BackBtn.png')}></Image>
+                {/* 이미지를 TouchableOpacity로 감쌉니다 */}
+                <TouchableOpacity onPress={() => navigation.navigate('Main')}> 
+                    <Image source={require('../assets/BackBtn.png')} />
+                </TouchableOpacity>
                 <Text style={styles.title}>메뉴 품절 등록</Text>
             </View>
+
+            {/* 네비게이션바 */}
             <Tab.Navigator 
                 screenOptions={styles.tabBarScreenOption} 
                 style={{ paddingTop: StatusBar.currentHeight }}>
@@ -52,6 +58,9 @@ function SoldOutTabs() {
                     />
                 ))}
             </Tab.Navigator>
+
+
+
         </SafeAreaView>
     );
 }
