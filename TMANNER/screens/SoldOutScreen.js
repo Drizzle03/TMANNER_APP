@@ -1,118 +1,44 @@
-import React from "react";
+import React, { useRef } from "react";
 import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacity, } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+import categories from './CategoriesData';
+
 const Tab = createMaterialTopTabNavigator();
-const categories = [
-    {id: '01', name: '메인',
-        content: [
-            {
-                menuName: '메뉴1',
-                price: '10,000원',
-                status: '판매중'
-            }, {
-                menuName: '메뉴2',
-                price: '12,000원',
-                status: '품절'
-            }]},
-    {id: '02', name: '사이드',
-    content: [
-        {
-            menuName: '메뉴1',
-            price: '10,000원',
-            status: '판매중'
-        }, {
-            menuName: '메뉴2',
-            price: '12,000원',
-            status: '품절'
-        }]},
-    {id: '03', name: '탕류',
-        content: [
-            {
-                menuName: '메뉴1',
-                price: '10,000원',
-                status: '판매중'
-            }, {
-                menuName: '메뉴2',
-                price: '12,000원',
-                status: '품절'
-            }]},
-    {id: '04', name: '튀김류',
-    content: [
-        {
-            menuName: '메뉴1',
-            price: '10,000원',
-            status: '판매중'
-        }, {
-            menuName: '메뉴2',
-            price: '12,000원',
-            status: '품절'
-        }]},
-    {id: '05', name: '주류',
-        content: [
-            {
-                menuName: '메뉴1',
-                price: '10,000원',
-                status: '판매중'
-            }, {
-                menuName: '메뉴2',
-                price: '12,000원',
-                status: '품절'
-            }]},
-    {id: '06', name: '기타',
-    content: [
-        {
-            menuName: '메뉴1',
-            price: '10,000원',
-            status: '판매중'
-        }, {
-            menuName: '메뉴2',
-            price: '12,000원',
-            status: '품절'
-        }]}
-];
 
 function DynamicScreen({ route }) {
-    // 메인 카테고리인지 확인
-    if (route.params.name === "메인") {
-        return (
-            <View style={{ flex: 1, padding: 20 }}>
-                {categories.map(category => (
-                    <View key={category.id} style={styles.categoryContainer}>
-                        <Text style={styles.categoryTitle}>{category.name}</Text>
-                        {category.content.map(menuItem => (
-                            <View key={menuItem.menuName} style={styles.menuContainer}>
-                                <Text style={styles.menuName}>{menuItem.menuName}</Text>
-                                <Text style={styles.menuPrice}>{menuItem.price}</Text>
-                                <Text style={styles.menuStatus}>{menuItem.status}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ))}
-            </View>
-        );
-    } else {
-        // 메인 카테고리가 아닌 경우 해당 카테고리의 메뉴만 출력
-        return (
-            <View style={{ flex: 1, padding: 20 }}>
-                {route.params.content.map(menuItem => (
-                    <View key={menuItem.menuName} style={styles.menuContainer}>
+    return (
+        <View style={{ flex: 1, padding: 20 }}>
+            <Text style={styles.categoryTitle}>{route.name}</Text>
+            <View style={styles.categorySeparator} />
+            {route.params.content.map(menuItem => (
+                <View key={menuItem.menuName} style={styles.menuContainer}>
+                    {/* 상단 카테고리 이름과 선 */}
+                    
+                    {/* 메뉴 아이템 */}
+                    <Image source={menuItem.image} style={{ width: 100, height: 100 }} />
+                    <View style={styles.menuTextContainer}>
                         <Text style={styles.menuName}>{menuItem.menuName}</Text>
                         <Text style={styles.menuPrice}>{menuItem.price}</Text>
-                        <Text style={styles.menuStatus}>{menuItem.status}</Text>
                     </View>
-                ))}
-            </View>
-        );
-    }
+                    {/* status 부분을 이미지로 변경 */}
+                    <Image 
+                        source={menuItem.status === '품절' ? require('../assets/ProductStatus02.png') : require('../assets/ProductStatus01.png')} 
+                        style={{ width: 68, height: 30 }}  // 이미지 크기는 적절히 조절해주세요
+                    />
+                </View>
+            ))}
+        </View>
+    );
 }
+
+
 
 function SoldOutTabs({ navigation }) {
     return (
         <SafeAreaView style={styles.safeAreaContainer}>
             {/* 상단 헤더  */}
             <View style={styles.container}>
-                {/* 이미지를 TouchableOpacity로 감쌉니다 */}
                 <TouchableOpacity onPress={() => navigation.navigate('Main')}> 
                     <Image source={require('../assets/BackBtn.png')} />
                 </TouchableOpacity>
@@ -157,7 +83,7 @@ const styles = StyleSheet.create({
     },
 
     title:{
-        fontSize:24,
+        fontSize:26,
         fontWeight: 'bold',
         marginTop:16
     },
@@ -174,7 +100,7 @@ const styles = StyleSheet.create({
             backgroundColor: 'black',
             width: '7%',        // 길이를 원하는 만큼 조절
             height: '5%',
-            left: '3.8%'          // 위치 조절
+            left: '5%'          // 위치 조절
         },
     },
     categoryContainer: {
@@ -189,19 +115,40 @@ const styles = StyleSheet.create({
     },
     menuContainer: {
         marginBottom: 10,
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    menuTextContainer:{
+        width: 150,
+        marginRight:5,
+        marginLeft:16,
+        flexDirection:"column",
     },
     menuName: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontWeight: '600',
+        marginBottom: 6,
     },
     menuPrice: {
         fontSize: 16,
-        color: '#666',
+        color: '#757575',
     },
     menuStatus: {
         fontSize: 16,
         color: 'red',
     },
+    categoryTitle: {
+        fontSize: 20,
+        fontWeight: '600',
+        marginBottom: 10,
+        marginTop: 12
+    },
+    categorySeparator: {
+        height: 1,
+        backgroundColor: '#D9D9D9',
+        marginBottom: 16,
+    },
+
 });
 
 export default SoldOutTabs;
