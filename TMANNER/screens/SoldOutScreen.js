@@ -1,25 +1,110 @@
 import React from "react";
-import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacity, } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
 const categories = [
-    { id: '01', name: '메인', content: 'Main Content' },
-    { id: '02', name: '사이드', content: 'Side Content' },
-    { id: '03', name: '탕류', content: 'Drink Content' },
-    { id: '04', name: '튀김류', content: 'Drink Content' },
-    { id: '05', name: '주류', content: 'Drink Content' },
-    { id: '06', name: '기타', content: 'Drink Content' },
-    { id: '07', name: '기타타', content: 'Drink Content' },
+    {id: '01', name: '메인',
+        content: [
+            {
+                menuName: '메뉴1',
+                price: '10,000원',
+                status: '판매중'
+            }, {
+                menuName: '메뉴2',
+                price: '12,000원',
+                status: '품절'
+            }]},
+    {id: '02', name: '사이드',
+    content: [
+        {
+            menuName: '메뉴1',
+            price: '10,000원',
+            status: '판매중'
+        }, {
+            menuName: '메뉴2',
+            price: '12,000원',
+            status: '품절'
+        }]},
+    {id: '03', name: '탕류',
+        content: [
+            {
+                menuName: '메뉴1',
+                price: '10,000원',
+                status: '판매중'
+            }, {
+                menuName: '메뉴2',
+                price: '12,000원',
+                status: '품절'
+            }]},
+    {id: '04', name: '튀김류',
+    content: [
+        {
+            menuName: '메뉴1',
+            price: '10,000원',
+            status: '판매중'
+        }, {
+            menuName: '메뉴2',
+            price: '12,000원',
+            status: '품절'
+        }]},
+    {id: '05', name: '주류',
+        content: [
+            {
+                menuName: '메뉴1',
+                price: '10,000원',
+                status: '판매중'
+            }, {
+                menuName: '메뉴2',
+                price: '12,000원',
+                status: '품절'
+            }]},
+    {id: '06', name: '기타',
+    content: [
+        {
+            menuName: '메뉴1',
+            price: '10,000원',
+            status: '판매중'
+        }, {
+            menuName: '메뉴2',
+            price: '12,000원',
+            status: '품절'
+        }]}
 ];
 
 function DynamicScreen({ route }) {
-    // route.params.content에 카테고리별 내용이 들어있습니다.
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>{route.params.content}</Text>
-      </View>
-    );
+    // 메인 카테고리인지 확인
+    if (route.params.name === "메인") {
+        return (
+            <View style={{ flex: 1, padding: 20 }}>
+                {categories.map(category => (
+                    <View key={category.id} style={styles.categoryContainer}>
+                        <Text style={styles.categoryTitle}>{category.name}</Text>
+                        {category.content.map(menuItem => (
+                            <View key={menuItem.menuName} style={styles.menuContainer}>
+                                <Text style={styles.menuName}>{menuItem.menuName}</Text>
+                                <Text style={styles.menuPrice}>{menuItem.price}</Text>
+                                <Text style={styles.menuStatus}>{menuItem.status}</Text>
+                            </View>
+                        ))}
+                    </View>
+                ))}
+            </View>
+        );
+    } else {
+        // 메인 카테고리가 아닌 경우 해당 카테고리의 메뉴만 출력
+        return (
+            <View style={{ flex: 1, padding: 20 }}>
+                {route.params.content.map(menuItem => (
+                    <View key={menuItem.menuName} style={styles.menuContainer}>
+                        <Text style={styles.menuName}>{menuItem.menuName}</Text>
+                        <Text style={styles.menuPrice}>{menuItem.price}</Text>
+                        <Text style={styles.menuStatus}>{menuItem.status}</Text>
+                    </View>
+                ))}
+            </View>
+        );
+    }
 }
 
 function SoldOutTabs({ navigation }) {
@@ -91,6 +176,31 @@ const styles = StyleSheet.create({
             height: '5%',
             left: '3.8%'          // 위치 조절
         },
+    },
+    categoryContainer: {
+        padding: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',
+    },
+    categoryTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    menuContainer: {
+        marginBottom: 10,
+    },
+    menuName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    menuPrice: {
+        fontSize: 16,
+        color: '#666',
+    },
+    menuStatus: {
+        fontSize: 16,
+        color: 'red',
     },
 });
 
