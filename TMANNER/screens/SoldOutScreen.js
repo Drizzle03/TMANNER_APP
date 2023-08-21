@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacity, } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import categories from './CategoriesData';
@@ -46,6 +46,7 @@ function SoldOutTabs({ navigation }) {
             </View>
 
             {/* 네비게이션바 */}
+            
             <Tab.Navigator 
                 screenOptions={styles.tabBarScreenOption} 
                 style={{ paddingTop: StatusBar.currentHeight }}>

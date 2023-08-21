@@ -21,6 +21,16 @@ const categories = [
                 price: '14,900원',
                 status: '품절',
                 image: require('../assets/menu1.png'),
+            },{
+                menuName: '된장찌개',
+                price: '14,900원',
+                status: '판매중',
+                image: require('../assets/menu1.png'),
+            },{
+                menuName: '육개장',
+                price: '14,900원',
+                status: '판매중',
+                image: require('../assets/menu1.png'),
             }
         ]},
     {id: '02', name: '사이드',
