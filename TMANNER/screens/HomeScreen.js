@@ -15,7 +15,7 @@ function HomeScreen({ navigation }) {
         <View style={styles.container}>
             <View style={styles.space_top}></View>
             <View style={styles.logobox}>
-                <Image source={require('../assets/logo.png')} style={{width: 125, height: 125}} />
+                <Image source={require('../assets/source/logo.png')} style={{width: 125, height: 125}} />
             </View>
             <View style={styles.space_bottom}></View>
         </View>

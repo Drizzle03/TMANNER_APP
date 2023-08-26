@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacity, } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import categories from './CategoriesData';
+import categories from '../assets/data/CategoriesData';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -22,7 +22,7 @@ function DynamicScreen({ route }) {
                         <Text style={styles.menuPrice}>{menuItem.price}</Text>
                     </View>
                     {/* status 부분을 이미지로 변경 */}
-                    <Image source={require('../assets/editBtn.png')} 
+                    <Image source={require('../assets/source/editBtn.png')} 
                         style={{ width: 22, height: 22 }}  // 이미지 크기는 적절히 조절해주세요
                     />
                 </View>
@@ -37,7 +37,7 @@ function MenuEditScreen({ navigation }) {
             {/* 상단 헤더  */}
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => navigation.navigate('Main')}> 
-                    <Image source={require('../assets/BackBtn.png')} />
+                    <Image source={require('../assets/source/BackBtn.png')} />
                 </TouchableOpacity>
                 <Text style={styles.title}>메뉴 수정</Text>
             </View>

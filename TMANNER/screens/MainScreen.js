@@ -18,7 +18,7 @@ function MainScreen(props) {
                     <View style={styles.priceMonthContainer}>
                         <Text style={styles.monthSalesText}>1,340,000원</Text>
                         <View style={styles.logobox}>
-                            <Image source={require('../assets/nextBtn.png')} style={{width: 25, height: 25}} />
+                            <Image source={require('../assets/source/nextBtn.png')} style={{width: 25, height: 25}} />
                         </View>
                     </View>
                 </View>
@@ -55,7 +55,7 @@ function MainScreen(props) {
                             <Text style={styles.btnTitle}>메뉴 등록</Text>
                             <Text style={styles.btnIcon}>🧑🏼‍🍳</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Test')}>
+                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Backup')}>
                             <Text style={styles.btnTitle}>제공 서비스 등록</Text>
                             <Text style={styles.btnSubTitle}>주문함과 동시에 고객들에게 서비스 제공이 가능해요</Text>
                             <Text style={styles.btnIcon}>🙌🏾</Text>
