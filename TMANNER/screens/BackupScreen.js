@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, SafeAreaView, Image, StatusBar, TouchableOpacit
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SelectList } from 'react-native-dropdown-select-list';
 
-import categories from '../assets/data/CategoriesData';
+import categories from '../assets/data/data';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -64,7 +64,7 @@ function BackupScreen({ navigation }) {
             {/* 상단 헤더  */}
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => navigation.navigate('Main')}> 
-                    <Image source={require('../assets/BackBtn.png')} />
+                    <Image source={require('../assets/source/BackBtn.png')} />
                 </TouchableOpacity>
                 <Text style={styles.title}>메뉴 품절 등록</Text>
             </View>
