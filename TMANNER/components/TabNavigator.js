@@ -5,33 +5,56 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 const Tab = createMaterialTopTabNavigator();
 
-function DynamicScreen({ route }) {
+function DynamicScreenWrapper(tabBarImageSource, detailPageRoute) {
+    return function WrappedDynamicScreen(props) {
+      return <DynamicScreen {...props} tabBarImageSource={tabBarImageSource} detailPageRoute={detailPageRoute} />;
+    }
+  }
+
+
+function DynamicScreen({ route, tabBarImageSource, navigation, detailPageRoute }) {
     return (
         <View style={{ flex: 1, padding: 20 }}>
             <Text style={styles.categoryTitle}>{route.name}</Text>
             <View style={styles.categorySeparator} />
-            {route.params.content.map(menuItem => (
-                <TouchableOpacity
-                key={menuItem.menuName}
-                onPress={() => navigation.navigate('DetailMenuEdit', { productId: menuItem.productId })}
-                >
+            {route.params.content.map(menuItem => {
+            if (detailPageRoute === 'None') {
+                return (
                     <View key={menuItem.menuName} style={styles.menuContainer}>
+                        <Image source={menuItem.image} style={{ width: 100, height: 100 }} />
+                        <View style={styles.menuRightContainer}>
+                            <View style={styles.menuTextContainer}>
+                                <Text style={styles.menuName}>{menuItem.menuName}</Text>
+                                <Text style={styles.menuPrice}>{menuItem.price}</Text>
+                            </View>
+                            <Image source={tabBarImageSource} style={{ width: 22, height: 22}} />
+                        </View>    
+                    </View>
+                );
+            }
+
+            return (
+                <TouchableOpacity
+                    key={menuItem.menuName}
+                    onPress={() => navigation.navigate(detailPageRoute, { productId: menuItem.productId })}
+                >
+                    <View style={styles.menuContainer}>
                         <Image source={menuItem.image} style={{ width: 100, height: 100 }} />
                         <View style={styles.menuTextContainer}>
                             <Text style={styles.menuName}>{menuItem.menuName}</Text>
                             <Text style={styles.menuPrice}>{menuItem.price}</Text>
                         </View>
-                        <Image source={require('../assets/source/editBtn.png')} 
-                            style={{ width: 22, height: 22 }}
-                        />
+                        <Image source={tabBarImageSource} style={{ width: 22, height: 22 }} />
                     </View>
                 </TouchableOpacity>
-            ))}
+            );
+        })}
+
         </View>
     );
 }
 
-function TabNavigator({ categories, tabBarImageSource }) {
+function TabNavigator({ categories, tabBarImageSource, detailPageRoute = 'DetailMenuEdit' }) {
   return (
     <Tab.Navigator 
         screenOptions={styles.tabBarScreenOption} 
@@ -40,7 +63,7 @@ function TabNavigator({ categories, tabBarImageSource }) {
         <Tab.Screen
           key={category.id}
           name={category.name}
-          component={DynamicScreen}
+          component={DynamicScreenWrapper(tabBarImageSource, detailPageRoute)}
           initialParams={{ content: category.content }}
           options={({ route, focused }) => ({
             tabBarLabel: ({ color, focused }) => (
@@ -92,11 +115,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     menuTextContainer:{
-        width: 150,
+        width: 200,
         marginRight:5,
         marginLeft:16,
         flexDirection:"column",
     },
+    menuRightContainer:{
+        flexDirection: "row",
+        alignItems: "center", // 여기를 수정했습니다.
+        justifyContent: 'space-between',
+        },
     menuName: {
         fontSize: 18,
         fontWeight: '600',
@@ -116,7 +144,7 @@ const styles = StyleSheet.create({
         height: 1,
         backgroundColor: '#D9D9D9',
         marginBottom: 16,
-    }
+    },
 });
 
 

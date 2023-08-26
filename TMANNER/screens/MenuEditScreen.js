@@ -5,6 +5,10 @@ import categories from '../assets/data/data';
 import Header from "../components/Header";
 import TabNavigator from "../components/TabNavigator";
 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Encountered two children with the same key']);
+
+
 function MenuEditScreen({ navigation }) {
     return (
         <SafeAreaView style={styles.safeAreaContainer}>

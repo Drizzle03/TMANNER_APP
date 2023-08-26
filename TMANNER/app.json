@@ -4,7 +4,6 @@
     "slug": "TMANNER",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": ". /icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": ". /splash.png",
@@ -19,12 +18,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": ". /adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": ". /favicon.png"
     }
   }
 }

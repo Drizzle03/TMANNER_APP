@@ -1,9 +1,6 @@
-import { StyleSheet, View, Text, SafeAreaView, Image, navigation} from 'react-native';
+import React from 'react';
 
-import categories from '../assets/data/data';
-import Header from "../components/Header";
-
-function DetailMenuEditScreen({ route }) {
+function DetailMenuAdd(props) {
     const { productId } = route.params;
 
     const menuItem = categories.flatMap(category => category.content).find(item => item.productId === productId);
@@ -33,4 +30,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'white', // 원하는 배경색으로 변경 가능
     },
 });
-export default DetailMenuEditScreen;
+
+export default DetailMenuAdd;

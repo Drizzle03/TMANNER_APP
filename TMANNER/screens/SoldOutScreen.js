@@ -6,6 +6,10 @@ import categories from '../assets/data/data';
 import Header from "../components/Header";
 import TabNavigator from "../components/TabNavigator";
 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Encountered two children with the same key']);
+
+
 const Tab = createMaterialTopTabNavigator();
 
 function SoldOutTabs({ navigation }) {
@@ -17,7 +21,8 @@ function SoldOutTabs({ navigation }) {
             {/* 네비게이션바 */}
             <TabNavigator 
             categories={categories}
-            tabBarImageSource={require('../assets/source/editBtn.png')} />
+            tabBarImageSource={require('../assets/source/editBtn.png')}
+            detailPageRoute={'None'} />
         </SafeAreaView>
     );
 }
